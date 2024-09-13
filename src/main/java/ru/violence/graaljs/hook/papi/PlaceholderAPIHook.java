@@ -81,6 +81,11 @@ public class PlaceholderAPIHook extends PlaceholderExpansion implements Relation
         return plugin.getDescription().getVersion();
     }
 
+    @Override
+    public boolean persist() {
+        return true;
+    }
+
     public @NotNull ScriptRegistry getScriptRegistry() {
         return scriptRegistry;
     }
