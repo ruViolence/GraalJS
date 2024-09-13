@@ -1,0 +1,5 @@
+name: GraalJS
+main: ru.violence.graaljs.GraalJSPlugin
+version: ${version}
+api-version: ${apiVersion}
+softdepend: [ PlaceholderAPI ]

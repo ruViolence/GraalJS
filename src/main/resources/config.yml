@@ -1,0 +1,10 @@
+runtime-executing:
+  enabled: true
+  only-console: false
+  context-lifetime-millis: 600000
+  hover-tooltip:
+    enabled: true
+    max-members: 20
+
+placeholderapi:
+  argument-separator: ','
