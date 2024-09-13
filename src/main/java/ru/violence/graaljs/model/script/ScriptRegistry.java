@@ -49,7 +49,7 @@ public class ScriptRegistry {
 
                 try {
                     String script = Files.readString(path);
-                    register(new Placeholder(plugin.getJsExecutor().createContext(null), identifier, script));
+                    register(new Placeholder(plugin.getJsExecutor().createContext(Map.of("bukkitClassLoader", plugin.getClass().getClassLoader())), identifier, script));
                 } catch (Exception e) {
                     plugin.getLogger().log(Level.SEVERE, "An error occurred while parsing a script \"" + fileName + "\"", e);
                 }

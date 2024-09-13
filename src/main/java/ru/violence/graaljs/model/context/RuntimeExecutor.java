@@ -44,7 +44,10 @@ public class RuntimeExecutor {
         UUID uniqueId = resolveUniqueId(executor);
         ContextInfo info = contexts.get(uniqueId);
         if (info == null) {
-            info = new ContextInfo(uniqueId, plugin.getJsExecutor().createContext(Map.of("sender", executor)));
+            info = new ContextInfo(uniqueId, plugin.getJsExecutor().createContext(Map.of(
+                    "bukkitClassLoader", plugin.getClass().getClassLoader(),
+                    "sender", executor)
+            ));
             contexts.put(uniqueId, info);
         } else {
             info.updateLastAccessTime();
