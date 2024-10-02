@@ -2,6 +2,7 @@ plugins {
     `java-library`
     id("java")
     id("maven-publish")
+    id("io.papermc.paperweight.userdev") version "1.7.3"
     id("com.gradleup.shadow") version "8.3.1"
 }
 
@@ -12,6 +13,8 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
+paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -21,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.6")
     implementation("org.graalvm.polyglot:polyglot:24.0.2")
     implementation("org.graalvm.polyglot:js-community:24.0.2")
