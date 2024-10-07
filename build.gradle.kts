@@ -13,8 +13,6 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
-paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
-
 repositories {
     mavenLocal()
     mavenCentral()
@@ -33,6 +31,10 @@ dependencies {
 }
 
 tasks {
+    assemble {
+        dependsOn(reobfJar)
+    }
+    
     compileJava {
         options.encoding = Charsets.UTF_8.name()
     }
@@ -55,10 +57,13 @@ tasks {
 
     shadowJar {
         relocate("dev.jorel.commandapi", "ru.violence.graaljs.shaded.dev.jorel.commandapi")
-        archiveFileName.set("GraalJS.jar")
     }
 
     build {
         dependsOn(shadowJar)
+    }
+
+    reobfJar {
+        outputJar.set(layout.buildDirectory.file("libs/GraalJS.jar"))
     }
 }
