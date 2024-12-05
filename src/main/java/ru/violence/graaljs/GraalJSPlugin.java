@@ -240,6 +240,12 @@ public class GraalJSPlugin extends JavaPlugin {
                         )
                 )
                 .register();
+
+        Bukkit.getScheduler().runTask(this, () -> {
+            if (placeholderAPIHook != null) {
+                placeholderAPIHook.getScriptRegistry().loadScripts(this);
+            }
+        });
     }
 
     @Override

@@ -20,8 +20,6 @@ public class PlaceholderAPIHook extends PlaceholderExpansion implements Relation
         this.plugin = plugin;
         this.scriptRegistry = new ScriptRegistry();
 
-        scriptRegistry.loadScripts(plugin);
-
         register();
     }
 
