@@ -24,8 +24,8 @@ repositories {
 dependencies {
     paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.6")
-    implementation("org.graalvm.polyglot:polyglot:24.0.2")
-    implementation("org.graalvm.polyglot:js-community:24.0.2")
+    implementation("org.graalvm.polyglot:polyglot:24.1.1")
+    implementation("org.graalvm.polyglot:js-community:24.1.1")
     implementation("dev.jorel:commandapi-bukkit-shade:9.5.3")
     compileOnly("org.jetbrains:annotations:24.1.0")
 }
