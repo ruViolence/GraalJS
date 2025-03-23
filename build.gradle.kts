@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "ru.violence"
-version = "1.0.4"
+version = "1.1.0"
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
