@@ -2,7 +2,7 @@ plugins {
     `java-library`
     id("java")
     id("maven-publish")
-    id("io.papermc.paperweight.userdev") version "1.7.3"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.14"
     id("com.gradleup.shadow") version "8.3.1"
 }
 
@@ -13,6 +13,8 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
+paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
+
 repositories {
     mavenLocal()
     mavenCentral()
@@ -22,19 +24,13 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.4-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.6")
     implementation("org.graalvm.polyglot:polyglot:24.2.0")
     implementation("org.graalvm.polyglot:js-community:24.2.0")
-    implementation("dev.jorel:commandapi-bukkit-shade:9.5.3")
-    compileOnly("org.jetbrains:annotations:24.1.0")
 }
 
 tasks {
-    assemble {
-        dependsOn(reobfJar)
-    }
-    
     compileJava {
         options.encoding = Charsets.UTF_8.name()
     }
@@ -56,14 +52,10 @@ tasks {
     }
 
     shadowJar {
-        relocate("dev.jorel.commandapi", "ru.violence.graaljs.shaded.dev.jorel.commandapi")
+        archiveFileName.set("GraalJS.jar")
     }
 
     build {
         dependsOn(shadowJar)
-    }
-
-    reobfJar {
-        outputJar.set(layout.buildDirectory.file("libs/GraalJS.jar"))
     }
 }
